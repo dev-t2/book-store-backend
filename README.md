@@ -1,4 +1,4 @@
-# Learn Grid
+# Learn Grid Layout
 
 - VS Code: https://code.visualstudio.com/
 - Korean Pack: https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ko
