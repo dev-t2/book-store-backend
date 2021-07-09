@@ -1,0 +1,32 @@
+body {
+  color: #222;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+.parent {
+  height: 300px;
+  border: 5px solid #000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* justify-items: start; */
+  justify-items: center;
+  /* justify-items: end; */
+
+  /* align-items: start; */
+  align-items: center;
+  /* align-items: end; */
+}
+
+.parent div {
+  background-color: darkkhaki;
+  font-size: 30px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  color: #fff;
+}
