@@ -15,4 +15,15 @@ export class FakersService {
 
     return await this.prismaService.user.createMany({ data });
   }
+
+  async createBooks() {
+    // const data = new Array(1000).fill(null).map(() => ({
+    //   email: faker.internet.email(),
+    //   password: faker.internet.password(),
+    // }));
+
+    // return await this.prismaService.user.createMany({ data });
+
+    return;
+  }
 }

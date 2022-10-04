@@ -10,4 +10,9 @@ export class FakersController {
   async createUsers() {
     return await this.fakersService.createUsers();
   }
+
+  @Post('books')
+  async createBooks() {
+    return await this.fakersService.createBooks();
+  }
 }
