@@ -12,8 +12,22 @@ export class UsersService {
     return await this.prismaService.user.create({ data: { email, password } });
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findUsers(page: number) {
+    const skip = page > 0 ? (page - 1) * 20 : 0;
+
+    const [users, userCount] = await Promise.all([
+      this.prismaService.user.findMany({
+        skip,
+        take: 20,
+        orderBy: { id: 'desc' },
+        select: { id: true, email: true },
+      }),
+      this.prismaService.user.count(),
+    ]);
+
+    const maxPage = Math.ceil(userCount / 20);
+
+    return { users, maxPage };
   }
 
   findOne(id: number) {

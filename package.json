@@ -23,6 +23,7 @@
     "prisma:generate": "npm install @prisma/client"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.5.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/mapped-types": "*",
