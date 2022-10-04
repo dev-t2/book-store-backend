@@ -15,4 +15,4 @@
   - [Referential actions](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/referential-actions)
   - [Prisma Client API reference](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference)
 - [ERDCloud](https://www.erdcloud.com)
-- [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker)
+- [Faker](https://www.npmjs.com/package/@faker-js/faker)

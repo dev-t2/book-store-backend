@@ -15,17 +15,17 @@ export class UsersService {
   async findUsers(page: number) {
     const skip = page > 0 ? (page - 1) * 20 : 0;
 
-    const [users, userCount] = await Promise.all([
+    const [users, count] = await Promise.all([
       this.prismaService.user.findMany({
         skip,
         take: 20,
-        orderBy: { id: 'desc' },
+        orderBy: { updatedAt: 'desc' },
         select: { id: true, email: true },
       }),
       this.prismaService.user.count(),
     ]);
 
-    const maxPage = Math.ceil(userCount / 20);
+    const maxPage = Math.ceil(count / 20);
 
     return { users, maxPage };
   }

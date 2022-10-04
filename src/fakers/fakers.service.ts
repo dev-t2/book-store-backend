@@ -17,13 +17,12 @@ export class FakersService {
   }
 
   async createBooks() {
-    // const data = new Array(1000).fill(null).map(() => ({
-    //   email: faker.internet.email(),
-    //   password: faker.internet.password(),
-    // }));
+    const data = new Array(100000).fill(null).map(() => ({
+      title: faker.lorem.sentence(),
+      author: faker.internet.userName(),
+      price: Math.round(Math.random() * 5) * 5000 + 10000,
+    }));
 
-    // return await this.prismaService.user.createMany({ data });
-
-    return;
+    return await this.prismaService.book.createMany({ data });
   }
 }

@@ -1,17 +1,27 @@
 import { Injectable } from '@nestjs/common';
 
-import { CreateBookDto } from './books.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class BooksService {
-  create(createBookDto: CreateBookDto) {
-    console.log(createBookDto);
+  constructor(private readonly prismaService: PrismaService) {}
 
-    return 'This action adds a new book';
+  async findBooks(page: number) {
+    const skip = page > 0 ? (page - 1) * 20 : 0;
+
+    const [books, count] = await Promise.all([
+      this.prismaService.book.findMany({ skip, take: 20, orderBy: { updatedAt: 'desc' } }),
+      this.prismaService.book.count(),
+    ]);
+
+    const maxPage = Math.ceil(count / 20);
+
+    return { books, maxPage };
   }
 
-  // findAll() {
-  //   return `This action returns all books`;
+  // create(createBookDto: CreateBookDto) {
+  //   console.log(createBookDto);
+  //   return 'This action adds a new book';
   // }
 
   // findOne(id: number) {
