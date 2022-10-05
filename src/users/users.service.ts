@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from './users.dto';
-import { User } from './users.entity';
+import { CreateUserDto } from './dto/users.dto';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -30,15 +30,10 @@ export class UsersService {
     return { users, maxPage };
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
-
-  // update(id: number) {
-  //   return `This action updates a #${id} user`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  async deleteUser(id: number) {
+    return await this.prismaService.user.delete({
+      where: { id },
+      select: { id: true, email: true },
+    });
+  }
 }

@@ -1,33 +1,42 @@
-import { Controller, DefaultValuePipe, Get, ParseIntPipe, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  DefaultValuePipe,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 
 import { BooksService } from './books.service';
+import { CreateReviewDto } from './dto/reviews.dto';
 
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   @Get()
-  findBooks(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
-    return this.booksService.findBooks(page);
+  async findBooks(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
+    return await this.booksService.findBooks(page);
   }
 
-  // @Post()
-  // create(@Body() createBookDto: CreateBookDto) {
-  //   return this.booksService.create(createBookDto);
-  // }
+  @Delete(':id')
+  async deleteBook(@Param('id', ParseIntPipe) id: number) {
+    return await this.booksService.deleteBook(id);
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.booksService.findOne(+id);
-  // }
+  @Post(':bookId/reviews')
+  async createReview(
+    @Param('bookId', ParseIntPipe) bookId: number,
+    @Body() createReviewDto: CreateReviewDto,
+  ) {
+    return await this.booksService.createReview(bookId, createReviewDto);
+  }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-  //   return this.booksService.update(+id, updateBookDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.booksService.remove(+id);
-  // }
+  @Get(':bookId/reviews')
+  async findReviews(@Param('bookId', ParseIntPipe) bookId: number) {
+    return await this.booksService.findReviews(bookId);
+  }
 }
