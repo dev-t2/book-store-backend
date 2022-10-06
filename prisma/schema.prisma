@@ -48,12 +48,13 @@ model Review {
 }
 
 model Cart {
+  id     Int  @id @default(autoincrement())
   userId Int
-  bookId Int
-  amount Int @default(1)
+  bookId Int?
+  amount Int  @default(1)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book Book? @relation(fields: [bookId], references: [id], onDelete: SetNull)
 
-  @@id([userId, bookId])
+  @@unique([userId, bookId])
 }

@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
-import { CreateCartDto, CreateUserDto } from './users.dto';
+import { CreateCartDto, CreateUserDto, FindCartsDto } from './users.dto';
 
 @Controller('users')
 export class UsersController {
@@ -32,16 +32,13 @@ export class UsersController {
     return await this.usersService.deleteUser(id);
   }
 
-  @Post(':userId/carts')
-  async createCart(
-    @Param('userId', ParseIntPipe) userId: number,
-    @Body() createCartDto: CreateCartDto,
-  ) {
-    return await this.usersService.createCart(userId, createCartDto);
+  @Post('carts')
+  async createCart(@Body() createCartDto: CreateCartDto) {
+    return await this.usersService.createCart(createCartDto);
   }
 
-  @Get(':userId/carts')
-  async findCarts(@Param('userId', ParseIntPipe) userId: number) {
-    return await this.usersService.findCarts(userId);
+  @Get('carts')
+  async findCarts(@Body() findCartsDto: FindCartsDto) {
+    return await this.usersService.findCarts(findCartsDto);
   }
 }
