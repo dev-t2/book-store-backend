@@ -22,6 +22,14 @@ export class BooksController {
     return await this.booksService.findBooks(page);
   }
 
+  @Get('search')
+  async searchBooks(
+    @Query('word') word: string,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+  ) {
+    return await this.booksService.searchBooks(word, page);
+  }
+
   @Delete(':id')
   async deleteBook(@Param('id', ParseIntPipe) id: number) {
     return await this.booksService.deleteBook(id);

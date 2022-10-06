@@ -14,5 +14,6 @@
   - [Data model](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model)
   - [Referential actions](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/referential-actions)
   - [Prisma Client API reference](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference)
+  - [Prisma Client and schema preview features](https://www.prisma.io/docs/concepts/components/preview-features/client-preview-features)
 - [ERDCloud](https://www.erdcloud.com)
 - [Faker](https://www.npmjs.com/package/@faker-js/faker)
