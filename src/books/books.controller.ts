@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 
 import { BooksService } from './books.service';
-import { CreateReviewDto } from './dto/reviews.dto';
+import { CreateReviewDto } from './books.dto';
 
 @Controller('books')
 export class BooksController {
