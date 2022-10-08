@@ -18,5 +18,6 @@
   - [Prisma Client and schema preview features](https://www.prisma.io/docs/concepts/components/preview-features/client-preview-features)
   - [Connection pool](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/connection-pool)
   - [Raw database access](https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access)
+  - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)
 - [ERDCloud](https://www.erdcloud.com)
 - [Faker](https://www.npmjs.com/package/@faker-js/faker)
