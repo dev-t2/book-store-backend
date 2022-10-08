@@ -1,11 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
+import { Cache } from 'cache-manager';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBookDto, CreateCategoryDto, CreateReviewDto, DeleteBookDto } from './books.dto';
 
 @Injectable()
 export class BooksService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+  ) {}
 
   async createBook({ title, author, price }: CreateBookDto) {
     return await this.prismaService.book.create({
@@ -33,21 +37,25 @@ export class BooksService {
   }
 
   async searchBooks(word: string, page: number) {
-    const search = `${word}`;
+    const cachedBooks = await this.cacheManager.get(`/books/search?word=${word}&page=${page}`);
+
+    if (cachedBooks) return cachedBooks;
 
     const skip = page > 0 ? (page - 1) * 20 : 0;
 
     const [books, count] = await Promise.all([
       this.prismaService.book.findMany({
-        where: { title: { search } },
+        where: { title: { search: `${word}` } },
         skip,
         take: 20,
         orderBy: { updatedAt: 'desc' },
       }),
-      this.prismaService.book.count({ where: { title: { search } } }),
+      this.prismaService.book.count({ where: { title: { search: `${word}` } } }),
     ]);
 
     const maxPage = Math.ceil(count / 20);
+
+    await this.cacheManager.set(`/books/search?word=${word}&page=${page}`, { books, maxPage });
 
     return { books, maxPage };
   }

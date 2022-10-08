@@ -10,20 +10,20 @@ import { BooksModule } from './books/books.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
     CacheModule.registerAsync({
+      isGlobal: true,
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
         return {
-          isGlobal: true,
           store: redisStore,
-          host: configService.get('REDIS_URL'),
-          auth_pass: configService.get('REDIS_PASSWORD'),
-          ttl: 10,
+          host: configService.get('REDIS_HOST'),
+          port: configService.get('REDIS_PORT'),
+          auth_pass: configService.get('REDIS_AUTH_PASS'),
         };
       },
       inject: [ConfigService],
     }),
-    PrismaModule,
     FakersModule,
     UsersModule,
     BooksModule,
