@@ -22,6 +22,7 @@
   - [Raw database access](https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access)
   - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)
   - [Transactions and batch queries](https://www.prisma.io/docs/concepts/components/prisma-client/transactions)
+  - [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio)
 - [ERDCloud](https://www.erdcloud.com)
 - [Faker](https://www.npmjs.com/package/@faker-js/faker)
 - [Redis Cloud Console](https://app.redislabs.com)
