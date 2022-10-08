@@ -26,4 +26,4 @@
 - [ERDCloud](https://www.erdcloud.com)
 - [Faker](https://www.npmjs.com/package/@faker-js/faker)
 - [Redis Cloud Console](https://app.redislabs.com)
-- [Redis store for node cache manager](https://github.com/dabroek/node-cache-manager-redis-store)
+  - [Redis store for node cache manager](https://github.com/dabroek/node-cache-manager-redis-store)
