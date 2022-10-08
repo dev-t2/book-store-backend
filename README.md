@@ -8,6 +8,7 @@
   - [Controllers](https://docs.nestjs.com/controllers)
   - [CRUD generator](https://docs.nestjs.com/recipes/crud-generator)
   - [Pipes](https://docs.nestjs.com/pipes)
+  - [Caching](https://docs.nestjs.com/techniques/caching)
 - [PostgreSQL](https://www.postgresql.org)
 - [Prisma](https://www.prisma.io)
   - [Next-Generation & Fully Type-Safe ORM for NestJS](https://www.prisma.io/nestjs)
