@@ -9,6 +9,7 @@
   - [CRUD generator](https://docs.nestjs.com/recipes/crud-generator)
   - [Pipes](https://docs.nestjs.com/pipes)
   - [Caching](https://docs.nestjs.com/techniques/caching)
+  - [Configuration](https://docs.nestjs.com/techniques/configuration)
 - [PostgreSQL](https://www.postgresql.org)
 - [Prisma](https://www.prisma.io)
   - [Next-Generation & Fully Type-Safe ORM for NestJS](https://www.prisma.io/nestjs)
@@ -23,3 +24,4 @@
   - [Transactions and batch queries](https://www.prisma.io/docs/concepts/components/prisma-client/transactions)
 - [ERDCloud](https://www.erdcloud.com)
 - [Faker](https://www.npmjs.com/package/@faker-js/faker)
+- [Redis Cloud Console](https://app.redislabs.com)
