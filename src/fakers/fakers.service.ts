@@ -8,8 +8,8 @@ export class FakersService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async createUsers() {
-    const data = new Array(10000).fill(null).map(() => ({
-      email: faker.internet.email(),
+    const data = new Array(100000).fill(null).map((_, index) => ({
+      email: faker.internet.email().replace('@', `${index}@`),
       password: faker.internet.password(),
     }));
 

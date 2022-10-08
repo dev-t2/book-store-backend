@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 
 import { BooksService } from './books.service';
-import { CreateReviewDto } from './books.dto';
+import { CreateReviewDto, DeleteBookDto } from './books.dto';
 
 @Controller('books')
 export class BooksController {
@@ -30,9 +30,9 @@ export class BooksController {
     return await this.booksService.searchBooks(word, page);
   }
 
-  @Delete(':id')
-  async deleteBook(@Param('id', ParseIntPipe) id: number) {
-    return await this.booksService.deleteBook(id);
+  @Delete()
+  async deleteBook(@Body() deleteBookDto: DeleteBookDto) {
+    return await this.booksService.deleteBook(deleteBookDto);
   }
 
   @Post(':bookId/reviews')

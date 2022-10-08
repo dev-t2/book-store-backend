@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateReviewDto } from './books.dto';
+import { CreateReviewDto, DeleteBookDto } from './books.dto';
 
 @Injectable()
 export class BooksService {
@@ -40,7 +40,7 @@ export class BooksService {
     return { books, maxPage };
   }
 
-  async deleteBook(id: number) {
+  async deleteBook({ id }: DeleteBookDto) {
     return await this.prismaService.book.delete({ where: { id } });
   }
 

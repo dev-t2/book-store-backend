@@ -12,6 +12,7 @@
 - [Prisma](https://www.prisma.io)
   - [Next-Generation & Fully Type-Safe ORM for NestJS](https://www.prisma.io/nestjs)
   - [Data model](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model)
+  - [Prisma schema reference](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference)
   - [Referential actions](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/referential-actions)
   - [Prisma Client API reference](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference)
   - [Prisma Client and schema preview features](https://www.prisma.io/docs/concepts/components/preview-features/client-preview-features)

@@ -5,4 +5,6 @@ export class Cart implements CartModel {
   userId: number;
   bookId: number | null;
   amount: number;
+  createdAt: Date;
+  updatedAt: Date;
 }

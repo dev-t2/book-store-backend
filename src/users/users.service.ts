@@ -1,7 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { faker } from '@faker-js/faker';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateCartDto, CreateUserDto, FindCartsDto } from './users.dto';
+import {
+  CreateCartDto,
+  CreateOrderDto,
+  CreateUserDto,
+  DeleteUserDto,
+  FindCartsDto,
+  FindOrdersDto,
+} from './users.dto';
 
 @Injectable()
 export class UsersService {
@@ -29,7 +37,7 @@ export class UsersService {
     return { users, maxPage };
   }
 
-  async deleteUser(id: number) {
+  async deleteUser({ id }: DeleteUserDto) {
     return await this.prismaService.user.delete({
       where: { id },
       select: { id: true, email: true },
@@ -51,5 +59,15 @@ export class UsersService {
     });
 
     return { carts };
+  }
+
+  async createOrder({ userId, bookId }: CreateOrderDto) {
+    const paymentId = faker.datatype.uuid();
+
+    return await this.prismaService.order.create({ data: { userId, bookId, paymentId } });
+  }
+
+  async findOrders({ userId }: FindOrdersDto) {
+    return await this.prismaService.order.findMany({ where: { userId } });
   }
 }
