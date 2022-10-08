@@ -1,11 +1,23 @@
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateReviewDto, DeleteBookDto } from './books.dto';
+import { CreateBookDto, CreateCategoryDto, CreateReviewDto, DeleteBookDto } from './books.dto';
 
 @Injectable()
 export class BooksService {
   constructor(private readonly prismaService: PrismaService) {}
+
+  async createBook({ title, author, price }: CreateBookDto) {
+    return await this.prismaService.book.create({
+      data: {
+        title,
+        author,
+        price,
+        // category: { connect: { id: 9 } }
+      },
+      include: { category: true },
+    });
+  }
 
   async findBooks(page: number) {
     const skip = page > 0 ? (page - 1) * 20 : 0;
@@ -42,6 +54,33 @@ export class BooksService {
 
   async deleteBook({ id }: DeleteBookDto) {
     return await this.prismaService.book.delete({ where: { id } });
+  }
+
+  async createCategory({ name }: CreateCategoryDto) {
+    return await this.prismaService.category.create({
+      data: {
+        name,
+        // books: { connect: [{ id: 1000000 }, { id: 999999 }, { id: 999998 }] }
+      },
+    });
+  }
+
+  async findCategories(page: number) {
+    const skip = page > 0 ? (page - 1) * 20 : 0;
+
+    const [categories, count] = await Promise.all([
+      this.prismaService.category.findMany({
+        skip,
+        take: 20,
+        orderBy: { updatedAt: 'desc' },
+        include: { books: true },
+      }),
+      this.prismaService.category.count(),
+    ]);
+
+    const maxPage = Math.ceil(count / 20);
+
+    return { categories, maxPage };
   }
 
   async createReview(bookId: number, { userId, content, rating }: CreateReviewDto) {

@@ -11,11 +11,16 @@ import {
 } from '@nestjs/common';
 
 import { BooksService } from './books.service';
-import { CreateReviewDto, DeleteBookDto } from './books.dto';
+import { CreateBookDto, CreateCategoryDto, CreateReviewDto, DeleteBookDto } from './books.dto';
 
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
+
+  @Post()
+  async createBook(@Body() createBookDto: CreateBookDto) {
+    return await this.booksService.createBook(createBookDto);
+  }
 
   @Get()
   async findBooks(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
@@ -33,6 +38,16 @@ export class BooksController {
   @Delete()
   async deleteBook(@Body() deleteBookDto: DeleteBookDto) {
     return await this.booksService.deleteBook(deleteBookDto);
+  }
+
+  @Post('categories')
+  async createCategory(@Body() createCategoryDto: CreateCategoryDto) {
+    return await this.booksService.createCategory(createCategoryDto);
+  }
+
+  @Get('categories')
+  async findCategories(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
+    return await this.booksService.findCategories(page);
   }
 
   @Post(':bookId/reviews')

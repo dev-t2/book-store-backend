@@ -23,17 +23,29 @@ model User {
   Order   Order[]
 }
 
-model Book {
+model Category {
   id        Int      @id @default(autoincrement())
-  title     String
-  author    String
-  price     Int
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  books Book[]
+}
+
+model Book {
+  id         Int      @id @default(autoincrement())
+  categoryId Int?
+  title      String
+  author     String
+  price      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   reviews Review[]
   carts   Cart[]
   orders  Order[]
+
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 }
 
 model Review {
